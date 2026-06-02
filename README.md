@@ -17,6 +17,8 @@ The chief of staff is my attempt to offload that. It runs on a schedule, proacti
 
 ## Architecture
 
+![Architecture diagram: Meeting notes → Claude (Extract + process) → Google Sheets (Action items) → Slack (Daily nudge)](assets/architecture.png)
+
 | Tool | Role |
 |------|------|
 | Claude Code | The brain — reads, reasons, writes |
