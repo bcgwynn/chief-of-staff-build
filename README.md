@@ -57,15 +57,6 @@ The chief of staff is my attempt to offload that. It runs on a schedule, proacti
 - `process-commands.sh` — shell script run by launchd 3x/day. Scans #cos-updates for commands and processes them.
 - `chief-of-staff-brief.md` — full project brief: architecture decisions, roadmap, build log, lessons learned.
 
-## How to adapt this
-
-1. Fork this repo
-2. Set up a Google Sheet with the schema in `CLAUDE.md`
-3. Deploy the Apps Script webhook (see the webhook section in `CLAUDE.md` for the payload format)
-4. Create two Slack channels: `#brain-dump` and `#cos-updates`. Set up a Slack app/bot with a bot token.
-5. Create a `.env` file with `SLACK_BOT_TOKEN=your-token` (never commit this)
-6. Configure the launchd plists to point at your scripts and schedule
-7. Update `CLAUDE.md` with your own goals, context, and channel IDs
 
 ## Build log
 
