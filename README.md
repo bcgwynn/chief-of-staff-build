@@ -71,6 +71,3 @@ The chief of staff is my attempt to offload that. It runs on a schedule, proacti
 
 Session-by-session decisions, tradeoffs, and failures are in [chief-of-staff-brief.md](chief-of-staff-brief.md). The failures are documented intentionally — this is a build-in-public project and the mistakes are part of the story.
 
-## Sessions
-
-Built across 6 sessions (May–June 2026) as part of the [Women Defining AI](https://www.womendefiningai.com) cohort.
