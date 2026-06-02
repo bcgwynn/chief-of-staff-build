@@ -74,10 +74,3 @@ Session-by-session decisions, tradeoffs, and failures are in [chief-of-staff-bri
 ## Sessions
 
 Built across 6 sessions (May–June 2026) as part of the [Women Defining AI](https://www.womendefiningai.com) cohort.
-
-- Session 1: Architecture decisions, tools ecosystem, Google Sheet schema
-- Session 2: MCP setup, Slack channels, first pipeline test
-- Session 3: Apps Script deployed, full pipeline working, launchd setup
-- Session 4: Command processor, Content Ideas tab, WDAI demo
-- Session 5: Bug fixes, CI routing, PATH fixes
-- Session 6: GitHub setup, bot identity fix, nudge format, meeting processing, goals.md
