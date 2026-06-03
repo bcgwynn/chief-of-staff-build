@@ -625,6 +625,43 @@ Both files live in the same Apps Script project linked to the CoS Action Items G
 
 ---
 
+### Session 7 — Documentation, rituals, and public repo (June 2, 2026)
+
+**What happened:**
+
+Two standing rituals formalized and baked into CLAUDE.md as hard gates: WDAI session cross-check (full transcripts, not summaries) and assumption check before any build action. These were requested multiple times previously and kept not happening — moving them to CLAUDE.md as REQUIRED pre-build steps was the fix.
+
+Failures & Lessons section restructured as a dedicated standalone section in the brief (F-001 through F-007 with full detail — what happened, root cause, fix, lesson, content potential). Previously failures were buried in build logs and getting condensed.
+
+Public repo (`bcgwynn/chief-of-staff-build`) planned and set up — scrubbed brief, scrubbed scripts, README structure defined. Public framing confirmed: "I built this to solve a real problem" — no job search copy, no PM positioning language.
+
+LinkedIn post #2 published — wrong workspace incident (F-001).
+
+F-006 and F-007 added to Failures & Lessons section (incomplete close-out instructions, over-explaining when called out).
+
+**Key decisions:**
+
+- Standing rituals must be hard gates in CLAUDE.md, not reminders in the brief
+- Both claude.ai chat and Claude Code should check full WDAI transcripts, not summaries
+- Failures get their own dedicated section, written in full at the time they happen — never condensed
+- Public repo framing: build story with decisions and failures, not a portfolio piece signaling PM skills
+- README structure: Problem, What I Built, Architecture Decisions, Failures & Lessons, What's Next, How to Use This
+
+**What I learned:**
+
+- Documentation that lives only as a "before next session" reminder doesn't get done — it needs to be a programmatic gate
+- F-001 root cause was more interesting than first documented: Claude Code didn't "assume" the wrong workspace — it used the only working connection it had, which happened to be WDAI. Silent fallback to wrong workspace because local bot token server was failing. The system does what it can with what works.
+- Failures buried in build logs get condensed and lose detail over time. Standalone section with full entries is the right structure.
+
+**Completed:**
+
+- CLAUDE.md updated with REQUIRED pre-build rituals section
+- Failures & Lessons section added to brief with F-001 through F-007 in full detail
+- Public repo live (`bcgwynn/chief-of-staff-build`)
+- LinkedIn post #2 published
+
+---
+
 ## Failures & Lessons
 
 *Each entry includes: what happened, root cause, fix, lesson, content potential. Never condensed. Add new entries here immediately when failures occur — don't wait for the build log.*
@@ -702,6 +739,34 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 **Lesson:** Critical instructions can't live only in a context file. Bake them into scripts. One authoritative file, no versions.
 
 **Content potential:** ✅ "The hardest bug I fixed wasn't in the code. It was in the AI's memory."
+
+---
+
+### F-006 — Incomplete close-out instructions (Session 6, June 1, 2026)
+
+**What happened:** At end of Session 6, Claude.ai gave a close-out checklist that missed two things: (1) Sheet updates should go through the Slack bot command processor, not Claude Code directly, and (2) the parity rule and two-repo rationale should be added to CLAUDE.md. Brittney caught both gaps.
+
+**Root cause:** Claude.ai didn't think through the full system before giving instructions — didn't check what the bot already handles. Close-out was generated from visible context, not from a full system audit.
+
+**Fix:** Both items were added manually after Brittney flagged them.
+
+**Lesson:** Close-out instructions must account for the full system, not just what Claude.ai can see in the current session. A chief of staff closes the loop completely without being prompted.
+
+**Content potential:** No — behavioral/meta, not a build failure.
+
+---
+
+### F-007 — Over-explaining when called out (Session 6, June 1, 2026)
+
+**What happened:** When Brittney pointed out the incomplete close-out, Claude.ai responded with a paragraph explaining why it happened and apologizing instead of just acknowledging and fixing.
+
+**Root cause:** Default model behavior when called out is to explain and justify rather than acknowledge and correct.
+
+**Fix:** None programmatic — behavioral pattern to watch.
+
+**Lesson:** Acknowledge briefly, correct, move on. Don't over-explain mistakes. A chief of staff that defends itself when wrong is more friction, not less.
+
+**Content potential:** No — meta/behavioral.
 
 ---
 
