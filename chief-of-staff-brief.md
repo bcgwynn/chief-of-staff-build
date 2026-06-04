@@ -693,6 +693,7 @@ F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusio
 
 - F-008 added to Failures & Lessons
 - F-009 added to Failures & Lessons
+- F-010 and F-011 added to Failures & Lessons (added retroactively — both were instructed earlier today but dropped between chat instruction and execution, a brain/hands gap)
 - Session 7 build log completed with correct date
 - Full launchd limitations documented
 - Routines vs GitHub Actions comparison completed
@@ -844,6 +845,32 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 **Lesson:** Recommendations are not decisions. Always get explicit confirmation before marking something as decided.
 
 **Content potential:** No.
+
+---
+
+### F-010 — Missed Nisha's June billing warning across multiple sessions (June 4, 2026)
+
+**What happened:** In WDAI Session 2 (May 28), Nisha explicitly said she was waiting for the June API credit announcement before building the agentic layer, because programmatic assembly requires API credits not included in the Pro or Max subscription. Claude.ai never surfaced this across multiple sessions, despite the WDAI cross-check being a required pre-build ritual, and despite those sessions being spent building automation whose viability depends on this exact cost question. Brittney caught it herself on June 4.
+
+**Root cause:** Claude.ai treated the cross-check as "read the transcript" rather than "connect what's in the transcript to the decision on the table."
+
+**Lesson:** The cross-check only works if Claude.ai actively maps transcript warnings to current decisions. Reading without connecting is not a cross-check.
+
+**Content potential:** ✅ "My AI read the transcript every session and still missed the one warning that mattered."
+
+---
+
+### F-011 — Weak citations lowered trust in analysis (June 4, 2026)
+
+**What happened:** When researching Claude Code billing and ToS, Claude.ai cited sources primarily about landing AI/PM jobs rather than building/infrastructure. Brittney flagged the citations weren't relevant, lowering confidence in the conclusions.
+
+**Root cause:** Claude.ai pulled from whatever search returned without vetting source relevance. For a consequential decision it should have gone to primary sources (Anthropic docs) first.
+
+**Fix:** Re-ran research against Anthropic's official Legal and Compliance docs, which corrected an earlier wrong claim about ToS.
+
+**Lesson:** For consequential decisions, go to primary sources first. Source quality determines trust.
+
+**Content potential:** ✅ "Good research isn't finding sources, it's vetting them."
 
 ---
 
