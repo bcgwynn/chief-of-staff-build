@@ -1,5 +1,19 @@
 #!/bin/bash
+export PATH="/Users/YOUR_USERNAME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 cd ~/chief-of-staff
+
+# Once-per-day guard for login-triggered morning run (before noon only)
+# Noon and 4pm calendar runs are not guarded — they should always fire.
+HOUR=$(date +%H)
+if [ "$HOUR" -lt 12 ]; then
+    GUARD_FILE="$HOME/chief-of-staff/logs/last-commands-morning-date.txt"
+    TODAY=$(date +%Y-%m-%d)
+    if [ -f "$GUARD_FILE" ] && [ "$(cat "$GUARD_FILE")" = "$TODAY" ]; then
+        echo "Morning command processor already ran today ($TODAY). Exiting."
+        exit 0
+    fi
+    echo "$TODAY" > "$GUARD_FILE"
+fi
 
 # Load bot token so the local Slack MCP server posts as Chief of Staff APP
 set -a

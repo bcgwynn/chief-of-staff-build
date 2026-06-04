@@ -2,6 +2,15 @@
 export PATH="/Users/YOUR_USERNAME/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 cd ~/chief-of-staff
 
+# Once-per-day guard — exit if nudge already ran today
+GUARD_FILE="$HOME/chief-of-staff/logs/last-nudge-date.txt"
+TODAY=$(date +%Y-%m-%d)
+if [ -f "$GUARD_FILE" ] && [ "$(cat "$GUARD_FILE")" = "$TODAY" ]; then
+    echo "Nudge already ran today ($TODAY). Exiting."
+    exit 0
+fi
+echo "$TODAY" > "$GUARD_FILE"
+
 # Load bot token so the local Slack MCP server posts as Chief of Staff APP
 set -a
 source .env
