@@ -148,37 +148,44 @@ When asked to process meetings (or on a trigger):
 
 ### Daily Nudge Format
 
-Use this exact structure every time. Do not add sections, rename sections, or reorder.
+Use this exact structure every time. Use Slack mrkdwn — NO markdown pipe tables. Canonical reference: May 29, 2026 nudge in #cos-updates.
 
 ```
-Daily Nudge — [Weekday, Month Day]
+*Daily Nudge — [Weekday, Month Day]*
 
-New from #brain-dump
-[One line per item processed today. If none: "Nothing new."]
-
----
-
-[Goal Name]
-[One-line context only if there is a blocking dependency or deadline within 5 days. Skip this line entirely if nothing meaningful.]
-
-| ID | Item | Due Date | Priority |
-|----|------|----------|----------|
-| AI-001 | ... | YYYY-MM-DD | 🔴 High |
-| AI-002 | ... | — | 🟡 Medium |
-| AI-003 | ... | — | 🟢 Low |
-
-[Repeat the goal block for each goal with open items. Goals with no open items are omitted.]
+[URGENT block — include ONLY if one item is clearly most time-sensitive: deadline today or this week, or it blocks everything else. Omit entirely if nothing qualifies.]
+🚨 *URGENT — [Goal Name]*
+*[ID]* — [one sentence: what needs to happen and why today/this week. Specific and direct.]
 
 ---
 
-⚠️ [One line per anomaly: items past due date, items Open/In Progress for >14 days with no status change, Blocked items where the blocker itself is unresolved. Omit this block entirely if no anomalies.]
+[One block per goal with open items. Omit goals with no open items. Order: most urgent goal first.]
+[emoji] *[Goal Name]*
+[Optional: one line of goal-level context if a blocker or deadline affects the whole goal. Omit if nothing meaningful.]
+• [ID] — [action item]. [Inline context woven in: why it matters now, deadline if any, what's needed.] [If blocked: *Blocked by [ID] + [ID].* [When/how it unblocks.]] 🔴
+• [ID] — [action item]. [Inline context.] 🟡
+• [ID, ID] — [grouped items if tightly related]. [Context.] 🔴
 
 ---
 
-[2-3 sentences of actual analysis — not a recap of the list. Name the most important item or decision by ID. Call out anything slipping or at risk. Be direct.]
+[Repeat goal block for each goal with open items.]
+
+---
+
+💡 *Content Ideas Ready ([N] New, [N] Drafted)*
+• [CI-ID] — [idea angle] [← note if strong candidate for next post]
+[Omit this section entirely if no content ideas exist.]
+
+⚠️ [One line per anomaly: items past due date, items Open/In Progress >14 days with no status change, Blocked items where the blocker is also unresolved, data discrepancies between Sheet and brief. Omit this block entirely if nothing to flag.]
+
+_#brain-dump [fully processed. No new items since last run. | [N] new items added today: [brief list].]_
+
+---
+
+*Analysis:* [2-3 sentences synthesizing across all goals — NOT a recap of the list. Name the single highest-leverage unblocked action to focus on today. Call out what's at risk of slipping and why. If a dependency chain is blocking multiple items, name it explicitly. This is the orchestration layer.]
 ```
 
-Priority key: 🔴 High · 🟡 Medium · 🟢 Low
+Priority dots: 🔴 High · 🟡 Medium · 🟢 Low — place at end of each bullet, after all inline context.
 
 ### Weekly Content Ideas
 1. Scan recent Granola meetings for genuinely interesting moments

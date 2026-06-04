@@ -31,12 +31,11 @@ set +a
 
 2) Read the Google Sheet (all rows with Status = Open or In Progress).
 
-3) Post the daily nudge to #cos-updates (YOUR_COS_UPDATES_CHANNEL_ID) using EXACTLY the format defined in the 'Daily Nudge Format' section of CLAUDE.md:
-   - Header: Daily Nudge — [Weekday, Month Day]
-   - New from #brain-dump section
-   - One table per goal (columns: ID / Item / Due Date / Priority) — priority shown as 🔴 High / 🟡 Medium / 🟢 Low. Goals with no open items are omitted.
-   - Optional one-line context under the goal name only if there is a blocking dependency or a deadline within 5 days
-   - ⚠️ anomaly flags for overdue items, items open >14 days with no change, and unresolved blockers — omit block if none
-   - 2-3 sentence analysis at the bottom: most important item or decision by ID, what is slipping or at risk
+3) Post the daily nudge to #cos-updates (YOUR_COS_UPDATES_CHANNEL_ID) using EXACTLY the format defined in the 'Daily Nudge Format' section of CLAUDE.md. Key rules:
+   - Use Slack mrkdwn only — NO markdown pipe tables (| col | col | rows). Tables render as raw text in Slack.
+   - Items are bullets with inline context woven into sentences, not columns
+   - Priority dots (🔴 🟡 🟢) go at the end of each bullet
+   - Bold blockers inline: *Blocked by AI-001 + AI-002.*
+   - Include the Analysis section at the bottom — synthesize across all goals, name the highest-leverage action, call out what's slipping
 
 IMPORTANT: post using mcp__slack__slack_post_message (local Slack MCP with bot token) — do NOT use mcp__claude_ai_Slack tools."
