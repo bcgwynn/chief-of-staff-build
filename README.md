@@ -41,7 +41,7 @@ The chief of staff is my attempt to offload that. It runs on a schedule, proacti
 - Slack command processor — handles status updates, new items, content idea updates
 - Apps Script webhook — append rows, update AI- items, update CI- items, add content ideas
 - Bot identity — posts as Chief of Staff APP, not my personal Slack profile
-- Automated via launchd — nudge at 9:30am, command processor at 7:55am / noon / 5pm
+- Automated via launchd — nudge fires on login (once-per-day guard), command processor at noon / 4pm via StartCalendarInterval. If Mac is asleep at noon or 4pm, that run is skipped; afternoon items are processed on next morning login. Nothing is lost permanently.
 
 ## What's next (v2)
 
@@ -55,8 +55,8 @@ The chief of staff is my attempt to offload that. It runs on a schedule, proacti
 ## Files in this repo
 
 - `CLAUDE.md` — the system prompt / operating instructions for the CoS. This is what Claude reads at the start of every session to understand goals, tools, and how to behave.
-- `daily-nudge.sh` — shell script run by launchd at 9:30am. Triggers the nudge pipeline.
-- `process-commands.sh` — shell script run by launchd 3x/day. Scans #cos-updates for commands and processes them.
+- `daily-nudge.sh` — shell script triggered on login (RunAtLoad). Runs the command processor first, then reads the Sheet and posts the nudge. Once-per-day guard prevents re-firing on re-login.
+- `process-commands.sh` — shell script run by launchd at noon and 4pm (StartCalendarInterval). Also called synchronously by the nudge at login so brain-dump is processed before the Sheet is read.
 - `chief-of-staff-brief.md` — full project brief: architecture decisions, roadmap, build log, lessons learned.
 
 

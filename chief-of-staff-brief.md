@@ -202,6 +202,7 @@ This must happen BEFORE the next build session, not after.
 - Job tracking spreadsheet integration
 - **Watch/Listen Later tab** — separate from Action Items and Content Ideas. For links, podcasts, videos, articles to consume later. Fields TBD (URL, title, type, source, date added, status)
 - **Model performance analysis** — git log is automatically tagged with Co-Authored-By model attribution (e.g. Claude Sonnet 4.6). Future analysis: cross-reference build log decisions, lessons, and failures against model versions to understand performance differences across the build.
+- **Reliable midday command processing** — noon/4pm runs can be skipped if Mac is asleep at the trigger moment. Login triggers fire only once per day so they can't cover midday. Needs a different event trigger or cloud-based solution (pending June 15 billing clarity). Resolve in v2.
 
 **Future**
 - True orchestration (system recommends what to do, not just lists)
@@ -701,6 +702,10 @@ F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusio
 - Decide: Routines vs GitHub Actions for always-on scheduling
 - Build whichever is chosen
 - Daily nudge still running on unreliable launchd in the meantime
+
+**Known limitation:**
+
+The noon and 4pm command processor runs fire via StartCalendarInterval. If the Mac is awake at the trigger time, they run normally. If the Mac is asleep at the exact trigger moment, that run is skipped (modern macOS does not reliably catch up missed launchd intervals on wake). Consequence: only if the Mac is asleep at BOTH noon and 4pm do afternoon Slack commands and brain-dump items wait until the next morning login to be processed — at which point the login-triggered nudge runs the command processor first. Nothing is lost permanently; processing is deferred. The morning nudge itself is reliable because it fires on login, not on a clock time.
 
 ---
 
