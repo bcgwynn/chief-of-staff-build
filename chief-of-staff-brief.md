@@ -842,5 +842,29 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 
 ---
 
+### F-012 — Solution space stayed narrow until use case was made precise (June 4, 2026)
+
+**What happened:** The daily nudge reliability problem was framed for many sessions as "launchd is unreliable, the options are launchd vs cloud." Only when Brittney articulated her actual use case precisely — not "pull at any time" but "pull at the time that works for me, when I sit down to work" — did a whole class of simpler technical solutions surface (login-triggered LaunchAgent with a once-per-day guard). The real requirement was an event trigger (login), not a clock trigger (9:30am). The clock-based framing had been driving the entire solution search down the wrong path.
+
+**Root cause:** Claude.ai accepted the original framing ("fire at 9:30am") as the requirement instead of probing for the underlying job-to-be-done. Jobs-to-be-done was never applied to the scheduling problem until Brittney forced it.
+
+**Lesson:** Get the use case precise before searching for solutions. "When does this actually need to happen, and what event does that correspond to?" is a different and better question than "how do I make the scheduled time reliable." A vague requirement produces a narrow, wrong solution set.
+
+**Content potential:** ✅ "I spent days trying to fix the wrong problem because I never questioned the requirement."
+
+---
+
+### F-013 — Limitations and better options surfaced only after Brittney pushed (June 4, 2026)
+
+**What happened:** Across this build, key constraints and better solutions repeatedly came to light only after Brittney pushed back rather than accepting Claude.ai's first answer. Examples: the launchd sleep limitations, the June 15 billing change, Nisha's wait-and-see warning, the login-trigger solution, the ToS nuance on claude -p. When Claude.ai initially suggested "wait for June 15 / Anthropic's change" as the path, Brittney pushed with "has anyone solved the launchd reliability issue?" — which surfaced the pmset and login-trigger options that were never presented.
+
+**Root cause:** Claude.ai tends to present its first viable answer as sufficient and stop, rather than exhausting the option space proactively. It treats "a solution exists" as the finish line instead of "the best available solution has been found."
+
+**Lesson:** Don't accept the first answer as the final answer. Like working with a TL or dev team, exhaust the options before settling — research thoroughly, surface the full tradeoff space, and don't present a single path as the only path. The user shouldn't have to push to get the thorough version; thoroughness should be the default.
+
+**Content potential:** ✅ "The best solutions came from not taking the AI's first answer."
+
+---
+
 ---
 
