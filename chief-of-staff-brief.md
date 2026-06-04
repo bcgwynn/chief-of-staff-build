@@ -201,6 +201,7 @@ This must happen BEFORE the next build session, not after.
 - Ambiguous brain dump clarification ("what do you want me to do with this?")
 - Job tracking spreadsheet integration
 - **Watch/Listen Later tab** — separate from Action Items and Content Ideas. For links, podcasts, videos, articles to consume later. Fields TBD (URL, title, type, source, date added, status)
+- **Model performance analysis** — git log is automatically tagged with Co-Authored-By model attribution (e.g. Claude Sonnet 4.6). Future analysis: cross-reference build log decisions, lessons, and failures against model versions to understand performance differences across the build.
 
 **Future**
 - True orchestration (system recommends what to do, not just lists)
