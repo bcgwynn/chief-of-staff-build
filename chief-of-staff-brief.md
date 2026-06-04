@@ -770,5 +770,21 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 
 ---
 
+### F-008 — Incorrectly stated launchd jobs count against Claude Code Routines limit (Session 4, May 28, 2026)
+
+**What happened:** Session 4 build log documented "Claude Pro's 5 daily routine runs limit is a real architectural constraint — every scheduled launchd job counts." This is incorrect. launchd runs locally on the Mac, completely outside Anthropic's infrastructure. Only Claude Code Routines count against the daily limit.
+
+**Root cause:** Claude.ai conflated local launchd scheduling with cloud-based Claude Code Routines without understanding the distinction between where code runs.
+
+**Fix:** Corrected understanding. launchd jobs do not count against any Anthropic limit.
+
+**Impact:** Scheduling decisions in Sessions 4 and 5 were made under a false constraint — the "3 runs/day" optimization was unnecessary.
+
+**Lesson:** Understand where code runs before making claims about platform limits.
+
+**Content potential:** ✅ "I optimized for a constraint that didn't exist."
+
+---
+
 ---
 
