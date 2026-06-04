@@ -203,6 +203,7 @@ This must happen BEFORE the next build session, not after.
 - **Watch/Listen Later tab** — separate from Action Items and Content Ideas. For links, podcasts, videos, articles to consume later. Fields TBD (URL, title, type, source, date added, status)
 - **Model performance analysis** — git log is automatically tagged with Co-Authored-By model attribution (e.g. Claude Sonnet 4.6). Future analysis: cross-reference build log decisions, lessons, and failures against model versions to understand performance differences across the build.
 - **Reliable midday command processing** — noon/4pm runs can be skipped if Mac is asleep at the trigger moment. Login triggers fire only once per day so they can't cover midday. Needs a different event trigger or cloud-based solution (pending June 15 billing clarity). Resolve in v2.
+- **Meeting processing confirmation step (Option C)** — when a meeting is processed, action items require Brittney's approval before writing to the Sheet; content ideas auto-write as Status=Draft; both filtered against goals.md before surfacing. Designed but not built. Currently meeting processing writes directly without a confirmation gate.
 
 **Future**
 - True orchestration (system recommends what to do, not just lists)
@@ -212,6 +213,12 @@ This must happen BEFORE the next build session, not after.
 - Image upload processing
 - Multi-agent structures
 - **Content post agent** — a dedicated agent that takes a content idea from the Content Ideas tab, drafts a post in Brittney's voice, and surfaces it for review/edit before publishing
+
+### Watching / External Dependencies
+
+**June 15 billing change — deferred decision.** Anthropic is moving Agent SDK and claude -p to a separate per-user credit pool at API rates (reported, effective ~June 15). This may affect the cost of the current launchd claude -p automation, not just future cloud options. Per Nisha's WDAI guidance (Session 2), wait and see what actually lands before committing to any always-on / cloud scheduling migration (Routines vs GitHub Actions vs staying local). Revisit after June 15. This decision gates the always-on scheduling choice.
+
+---
 
 ### User Interaction Design — CRITICAL PATH
 
