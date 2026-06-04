@@ -11,6 +11,15 @@ if [ -f "$GUARD_FILE" ] && [ "$(cat "$GUARD_FILE")" = "$TODAY" ]; then
 fi
 echo "$TODAY" > "$GUARD_FILE"
 
+# Run command processor first so brain-dump is processed before the Sheet is read.
+# Runs synchronously — nudge waits for it to finish before proceeding.
+# If it errors, log and continue so the nudge still fires.
+/path/to/chief-of-staff/process-commands.sh
+CMD_EXIT=$?
+if [ $CMD_EXIT -ne 0 ]; then
+    echo "Warning: command processor exited with code $CMD_EXIT. Proceeding with nudge." >&2
+fi
+
 # Load bot token so the local Slack MCP server posts as Chief of Staff APP
 set -a
 source .env
