@@ -662,6 +662,47 @@ F-006 and F-007 added to Failures & Lessons section (incomplete close-out instru
 
 ---
 
+### Session 8 — Daily nudge reliability investigation (June 3, 2026)
+
+**What happened:**
+
+Investigated why the daily nudge isn't firing reliably. Confirmed launchd is fundamentally unreliable — not just a sleep issue. Even when the Mac is awake, scheduled jobs don't always fire. Full launchd limitations documented accurately for the first time; previous documentation understated the problem.
+
+Discovered F-008: Session 4 build log incorrectly stated launchd jobs count against Claude Code Routines limit — this was wrong and influenced scheduling decisions in Sessions 4 and 5 unnecessarily.
+
+Completed full comparison of Claude Code Routines vs GitHub Actions in plain terms. Bot identity confirmed as non-negotiable. Decision on which path to take deferred to next session.
+
+F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusion after completing the comparison without getting confirmation — assumption check failure.
+
+**Key decisions:**
+
+- Bot identity (Chief of Staff APP) is non-negotiable — any always-on solution must preserve it
+- launchd is not a viable long-term scheduling solution — not just unreliable when Mac is asleep, unreliable period
+- Routines vs GitHub Actions comparison complete — decision deferred to next session
+
+**What I learned:**
+
+- launchd failures have been understated in the brief — the real picture is: silent failures, no reliable feedback, unreliable even when Mac is awake, recurring PATH issues
+- The always-on problem was flagged in Session 1 as a known gap and parked. It's now actively blocking the system from working as designed.
+- Claude.ai stated a conclusion without getting confirmation — assumption check failure, logged as F-009
+- The WDAI transcripts are a real resource — Nisha and Habon are hitting the same walls. Worth asking the group directly about scheduling solutions.
+
+**Completed:**
+
+- F-008 added to Failures & Lessons
+- F-009 added to Failures & Lessons
+- Session 7 build log completed with correct date
+- Full launchd limitations documented
+- Routines vs GitHub Actions comparison completed
+
+**Open for next session:**
+
+- Decide: Routines vs GitHub Actions for always-on scheduling
+- Build whichever is chosen
+- Daily nudge still running on unreliable launchd in the meantime
+
+---
+
 ## Failures & Lessons
 
 *Each entry includes: what happened, root cause, fix, lesson, content potential. Never condensed. Add new entries here immediately when failures occur — don't wait for the build log.*
@@ -783,6 +824,20 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 **Lesson:** Understand where code runs before making claims about platform limits.
 
 **Content potential:** ✅ "I optimized for a constraint that didn't exist."
+
+---
+
+### F-009 — Claude.ai stated conclusion without confirmation (June 3, 2026)
+
+**What happened:** After completing the Routines vs GitHub Actions comparison, Claude.ai stated "GitHub Actions is the right path" as a conclusion without getting Brittney's confirmation. Brittney had not made a decision.
+
+**Root cause:** Claude.ai drew a conclusion from its own analysis and presented it as decided rather than as a recommendation.
+
+**Fix:** Decision correctly marked as open.
+
+**Lesson:** Recommendations are not decisions. Always get explicit confirmation before marking something as decided.
+
+**Content potential:** No.
 
 ---
 
