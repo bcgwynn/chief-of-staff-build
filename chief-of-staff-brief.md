@@ -201,6 +201,7 @@ This must happen BEFORE the next build session, not after.
 - Ambiguous brain dump clarification ("what do you want me to do with this?")
 - Job tracking spreadsheet integration
 - **Watch/Listen Later tab** — separate from Action Items and Content Ideas. For links, podcasts, videos, articles to consume later. Fields TBD (URL, title, type, source, date added, status)
+- **Evaluate Claude Code Routines as launchd replacement** — Routines support remote execution (laptop doesn't need to be awake), which directly solves the daily nudge reliability issue. Claude.ai never recommended this as an option when launchd was built — surfaced in WDAI Session 1 by Habon. Worth testing before investing more in launchd infrastructure. Constraint: same 5 daily runs limit applies.
 - **Model performance analysis** — git log is automatically tagged with Co-Authored-By model attribution (e.g. Claude Sonnet 4.6). Future analysis: cross-reference build log decisions, lessons, and failures against model versions to understand performance differences across the build.
 - **Reliable midday command processing** — noon/4pm runs can be skipped if Mac is asleep at the trigger moment. Login triggers fire only once per day so they can't cover midday. Needs a different event trigger or cloud-based solution (pending June 15 billing clarity). Resolve in v2.
 - **Meeting processing confirmation step (Option C)** — when a meeting is processed, action items require Brittney's approval before writing to the Sheet; content ideas auto-write as Status=Draft; both filtered against goals.md before surfacing. Designed but not built. Currently meeting processing writes directly without a confirmation gate.
@@ -213,6 +214,7 @@ This must happen BEFORE the next build session, not after.
 - Image upload processing
 - Multi-agent structures
 - **Content post agent** — a dedicated agent that takes a content idea from the Content Ideas tab, drafts a post in Brittney's voice, and surfaces it for review/edit before publishing
+- **Make public repo forkable** — once the system is stable and complete, add setup instructions so others can run their own version with their own credentials. Not yet — the system isn't done.
 
 ### Watching / External Dependencies
 
@@ -671,7 +673,7 @@ F-006 and F-007 added to Failures & Lessons section (incomplete close-out instru
 
 ---
 
-### Session 8 — Daily nudge reliability investigation (June 3, 2026)
+### Session 8 — Daily nudge reliability investigation + format fix (June 3–4, 2026)
 
 **What happened:**
 
@@ -683,11 +685,23 @@ Completed full comparison of Claude Code Routines vs GitHub Actions in plain ter
 
 F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusion after completing the comparison without getting confirmation — assumption check failure.
 
+Daily nudge format regression discovered and fixed. The standardized format was using markdown pipe tables, which Slack doesn't render — nudges showed raw `| col | col |` syntax. Root cause: the pipe-table spec was in the build repo CLAUDE.md and both daily-nudge.sh prompts; the main repo CLAUDE.md had no format section at all.
+
+Found the canonical format: the May 29 daily nudge, which used clean Slack mrkdwn and rendered correctly through the bot token. Discovered the May 27 version (which looked best) used Block Kit tables posted via the claude.ai connector — not reproducible with the current bot-token MCP, which is text-only.
+
+Chose mrkdwn (Option B) over Block Kit via curl (Option A) — Block Kit would require Claude to generate valid JSON in a shell prompt every morning, a fragility risk that contradicts the reliability work done this session.
+
+Locked in the format: header, optional 🚨 URGENT callout, goal sections with emoji headers, inline-context bullets with priority dots (no pipe tables), bold blockers, Content Ideas section, anomalies callout, italic brain-dump footer, and a high-level Analysis synthesis section — both inline reasoning per item AND bottom-line orchestration analysis. Verified the new format renders correctly live in Slack before relying on it.
+
+Identified LinkedIn post #3 angle: "the best solutions came from not taking the AI's first answer" — the better answer was often available the whole time; pushing past the first response is what surfaced it.
+
 **Key decisions:**
 
 - Bot identity (Chief of Staff APP) is non-negotiable — any always-on solution must preserve it
 - launchd is not a viable long-term scheduling solution — not just unreliable when Mac is asleep, unreliable period
 - Routines vs GitHub Actions comparison complete — decision deferred to next session
+- Nudge format: mrkdwn bullets only, no pipe tables, verified live in Slack before locking in
+- Block Kit via curl rejected — fragility risk outweighs visual improvement
 
 **What I learned:**
 
@@ -695,6 +709,9 @@ F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusio
 - The always-on problem was flagged in Session 1 as a known gap and parked. It's now actively blocking the system from working as designed.
 - Claude.ai stated a conclusion without getting confirmation — assumption check failure, logged as F-009
 - The WDAI transcripts are a real resource — Nisha and Habon are hitting the same walls. Worth asking the group directly about scheduling solutions.
+- Format consistency efforts can regress quality if the standardized format isn't tested in the actual rendering environment. A spec that looks right isn't verified until it renders live.
+- The two repos' CLAUDE.md files had diverged — the main repo never had the format section. Divergence between context files causes silent inconsistency.
+- The bot-token MCP is text-only; richer Block Kit formatting was only available through the claude.ai connector. Tool choice constrains output format.
 
 **Completed:**
 
@@ -704,6 +721,8 @@ F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusio
 - Session 7 build log completed with correct date
 - Full launchd limitations documented
 - Routines vs GitHub Actions comparison completed
+- Daily nudge format fixed (May 29 mrkdwn template) and verified live in Slack
+- Format spec aligned across both repos and both scripts, pipe tables explicitly prohibited
 
 **Open for next session:**
 
