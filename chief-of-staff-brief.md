@@ -951,5 +951,17 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 
 ---
 
+### F-014 — Session-to-date mapping thrashed across multiple corrections (June 5, 2026)
+
+**What happened:** When closing out sessions, Claude.ai repeatedly proposed incorrect session-to-date mappings — treating topic shifts within a single day (June 4: investigation → content ideas → format fix) as session boundaries, and conflating June 3 and June 4 work. It took multiple rounds and Brittney supplying git timestamps and dated screenshots to establish the correct mapping.
+
+**Root cause:** Claude.ai reconstructed dates from memory and inference instead of grounding in the authoritative source (git commit timestamps) from the start. It also stated mappings with false confidence rather than verifying first.
+
+**Fix:** Established mapping from git timestamps + dated conversation screenshots. Locked: S6=Jun1, S7=Jun2, S8=Jun3, S9=Jun4.
+
+**Lesson:** For anything with a factual ground truth (dates, commits, file state), check the authoritative source before asserting — don't reconstruct from memory. The brain/hands split makes this worse: Claude.ai can't see Claude Code's history, so it must pull from git rather than guess.
+
+**Content potential:** ✅ Fits the "don't trust the AI's first answer" theme; also a concrete example of why git timestamps beat memory.
+
 ---
 
