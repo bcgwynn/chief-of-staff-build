@@ -673,7 +673,7 @@ F-006 and F-007 added to Failures & Lessons section (incomplete close-out instru
 
 ---
 
-### Session 8 — Daily nudge reliability investigation + format fix (June 3–4, 2026)
+### Session 8 — Daily nudge reliability investigation (June 3, 2026)
 
 **What happened:**
 
@@ -685,23 +685,11 @@ Completed full comparison of Claude Code Routines vs GitHub Actions in plain ter
 
 F-009 logged: Claude.ai stated "GitHub Actions is the right path" as a conclusion after completing the comparison without getting confirmation — assumption check failure.
 
-Daily nudge format regression discovered and fixed. The standardized format was using markdown pipe tables, which Slack doesn't render — nudges showed raw `| col | col |` syntax. Root cause: the pipe-table spec was in the build repo CLAUDE.md and both daily-nudge.sh prompts; the main repo CLAUDE.md had no format section at all.
-
-Found the canonical format: the May 29 daily nudge, which used clean Slack mrkdwn and rendered correctly through the bot token. Discovered the May 27 version (which looked best) used Block Kit tables posted via the claude.ai connector — not reproducible with the current bot-token MCP, which is text-only.
-
-Chose mrkdwn (Option B) over Block Kit via curl (Option A) — Block Kit would require Claude to generate valid JSON in a shell prompt every morning, a fragility risk that contradicts the reliability work done this session.
-
-Locked in the format: header, optional 🚨 URGENT callout, goal sections with emoji headers, inline-context bullets with priority dots (no pipe tables), bold blockers, Content Ideas section, anomalies callout, italic brain-dump footer, and a high-level Analysis synthesis section — both inline reasoning per item AND bottom-line orchestration analysis. Verified the new format renders correctly live in Slack before relying on it.
-
-Identified LinkedIn post #3 angle: "the best solutions came from not taking the AI's first answer" — the better answer was often available the whole time; pushing past the first response is what surfaced it.
-
 **Key decisions:**
 
 - Bot identity (Chief of Staff APP) is non-negotiable — any always-on solution must preserve it
 - launchd is not a viable long-term scheduling solution — not just unreliable when Mac is asleep, unreliable period
 - Routines vs GitHub Actions comparison complete — decision deferred to next session
-- Nudge format: mrkdwn bullets only, no pipe tables, verified live in Slack before locking in
-- Block Kit via curl rejected — fragility risk outweighs visual improvement
 
 **What I learned:**
 
@@ -709,20 +697,13 @@ Identified LinkedIn post #3 angle: "the best solutions came from not taking the 
 - The always-on problem was flagged in Session 1 as a known gap and parked. It's now actively blocking the system from working as designed.
 - Claude.ai stated a conclusion without getting confirmation — assumption check failure, logged as F-009
 - The WDAI transcripts are a real resource — Nisha and Habon are hitting the same walls. Worth asking the group directly about scheduling solutions.
-- Format consistency efforts can regress quality if the standardized format isn't tested in the actual rendering environment. A spec that looks right isn't verified until it renders live.
-- The two repos' CLAUDE.md files had diverged — the main repo never had the format section. Divergence between context files causes silent inconsistency.
-- The bot-token MCP is text-only; richer Block Kit formatting was only available through the claude.ai connector. Tool choice constrains output format.
 
 **Completed:**
 
-- F-008 added to Failures & Lessons
-- F-009 added to Failures & Lessons
-- F-010 and F-011 added to Failures & Lessons (added retroactively — both were instructed earlier today but dropped between chat instruction and execution, a brain/hands gap)
+- F-006, F-007, F-008, F-009 added to Failures & Lessons
 - Session 7 build log completed with correct date
 - Full launchd limitations documented
 - Routines vs GitHub Actions comparison completed
-- Daily nudge format fixed (May 29 mrkdwn template) and verified live in Slack
-- Format spec aligned across both repos and both scripts, pipe tables explicitly prohibited
 
 **Open for next session:**
 
@@ -733,6 +714,52 @@ Identified LinkedIn post #3 angle: "the best solutions came from not taking the 
 **Known limitation:**
 
 The noon and 4pm command processor runs fire via StartCalendarInterval. If the Mac is awake at the trigger time, they run normally. If the Mac is asleep at the exact trigger moment, that run is skipped (modern macOS does not reliably catch up missed launchd intervals on wake). Consequence: only if the Mac is asleep at BOTH noon and 4pm do afternoon Slack commands and brain-dump items wait until the next morning login to be processed — at which point the login-triggered nudge runs the command processor first. Nothing is lost permanently; processing is deferred. The morning nudge itself is reliable because it fires on login, not on a clock time.
+
+### Session 9 — Daily nudge login-trigger fix + format fix (June 4, 2026)
+
+**What happened:**
+
+Pushed past both cloud scheduling options (Routines and GitHub Actions) and chose neither. Researched and landed on a login-triggered LaunchAgent with a once-per-day guard as the actual fix — the nudge owns its own sequencing: runs the command processor synchronously first (brain dump processed before Sheet is read), then posts the nudge. This matches the real use case: "fire when I sit down to work" is a login event, not a clock time.
+
+Daily nudge format regression discovered and fixed. The standardized format was using markdown pipe tables, which Slack doesn't render — nudges showed raw `| col | col |` syntax. Root cause: the pipe-table spec was in the build repo CLAUDE.md and both daily-nudge.sh prompts; the main repo CLAUDE.md had no format section at all.
+
+Found the canonical format: the May 29 daily nudge, which used clean Slack mrkdwn and rendered correctly through the bot token. Discovered the May 27 version (which looked best) used Block Kit tables posted via the claude.ai connector — not reproducible with the current bot-token MCP, which is text-only.
+
+Chose mrkdwn (Option B) over Block Kit via curl (Option A) — Block Kit would require Claude to generate valid JSON in a shell prompt every morning, a fragility risk that contradicts the reliability work done this session.
+
+Locked in the format: header, optional 🚨 URGENT callout, goal sections with emoji headers, inline-context bullets with priority dots (no pipe tables), bold blockers, Content Ideas section, anomalies callout, italic brain-dump footer, and a high-level Analysis synthesis section — both inline reasoning per item AND bottom-line orchestration analysis. Verified the new format renders correctly live in Slack before relying on it.
+
+Identified LinkedIn post #3 angle: "the best solutions came from not taking the AI's first answer" — the better answer was often available the whole time; pushing past the first response is what surfaced it.
+
+F-010 (missed Nisha's June API warning), F-011 (weak citations), F-012 (narrow solution space), F-013 (better options surfaced only after pushing) logged this session.
+
+**Key decisions:**
+
+- Login-triggered LaunchAgent (RunAtLoad + once-per-day guard) chosen over Routines and GitHub Actions — matches the actual use case, no cloud dependency
+- Process-commands.sh called synchronously before nudge — brain dump processed before Sheet is read
+- Nudge format: mrkdwn bullets only, no pipe tables, verified live in Slack before locking in
+- Block Kit via curl rejected — fragility risk outweighs visual improvement
+
+**What I learned:**
+
+- The requirement was wrong, not the solution. "Fire at login" is a different and better requirement than "fire at 9:30am." Jobs-to-be-done applied to a scheduling problem unlocks the right solution set.
+- Format consistency efforts can regress quality if the standardized format isn't tested in the actual rendering environment. A spec that looks right isn't verified until it renders live.
+- The two repos' CLAUDE.md files had diverged — the main repo never had the format section. Divergence between context files causes silent inconsistency.
+- The bot-token MCP is text-only; richer Block Kit formatting was only available through the claude.ai connector. Tool choice constrains output format.
+- The WDAI cross-check has been failing not because it wasn't done, but because it wasn't connected — reading the transcript ≠ mapping warnings to current decisions (F-010).
+
+**Completed:**
+
+- Login-trigger nudge built: RunAtLoad plist, once-per-day guard, process-commands.sh called synchronously before nudge
+- Daily nudge format fixed (May 29 mrkdwn template) and verified live in Slack
+- Format spec aligned across both repos and both scripts, pipe tables explicitly prohibited
+- F-010, F-011, F-012, F-013 added to Failures & Lessons
+- Public repo scripts and README updated to match new architecture
+
+**Open for next session:**
+
+- PATH error recurred in nudge-error.log (`claude: command not found`) — verify login-triggered nudge is working reliably before closing this out
+- June 15 billing change — watch and decide whether it changes the always-on architecture path
 
 ---
 
