@@ -22,6 +22,12 @@ State out loud:
 
 Get explicit confirmation before proceeding with anything that has external side effects.
 
+### 3. MODIFICATION INTENT DECLARATION
+Before giving any instruction that will modify the CoS (files, scripts, architecture, pipelines, CLAUDE.md, or the brief):
+- State what you understand the request to be
+- State what you're about to do and why
+- If anything is ambiguous, ask before proceeding rather than guessing
+
 ## CRITICAL RULES — READ FIRST
 
 1. **All Slack messages MUST be sent via the local bot token using curl** — NEVER use the claude.ai Slack MCP connector to send messages. Messages sent via claude.ai appear as your personal profile and generate no notifications. Use this pattern:
@@ -230,3 +236,4 @@ Priority dots: 🔴 High · 🟡 Medium · 🟢 Low — place at end of each bul
 - **Automation now, orchestration later** — currently you list items; eventually you'll recommend what to do first and why
 - **Slack is the inbox and the outbox** — captures come in through #brain-dump, nudges go out through Slack
 - **Google Sheet is the filing cabinet** — nothing valuable lives only in Slack (90-day history limit on free tier)
+- **Don't duplicate Espa** — stay in your lane (action items, follow-ups, content, project tracking)
