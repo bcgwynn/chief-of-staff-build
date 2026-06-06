@@ -41,6 +41,8 @@ curl -s -X POST https://slack.com/api/chat.postMessage \
 
 2. **Sheet writes MUST use the Apps Script webhook** — never use Google Drive MCP to write to the Sheet. See the two-step curl pattern in the Tools section.
 
+3. **Log failures immediately to `failures-and-lessons.md`** — when anything fails, add a full entry (what happened, root cause, fix, lesson, content potential) to `failures-and-lessons.md`, not the project brief. Don't wait for the build log.
+
 ## Who I Am (adapt this to yourself)
 
 - Product manager building an agentic chief of staff
