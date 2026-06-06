@@ -761,6 +761,38 @@ F-010 (missed Nisha's June API warning), F-011 (weak citations), F-012 (narrow s
 - PATH error recurred in nudge-error.log (`claude: command not found`) — verify login-triggered nudge is working reliably before closing this out
 - June 15 billing change — watch and decide whether it changes the always-on architecture path
 
+### Session 10 — Project structure + ritual improvements (June 5, 2026)
+
+**What happened:**
+
+Updated project instructions with 4 formalized rituals: WDAI cross-check before any build decision, assumption check before any CoS change, state intent before acting on CoS changes, answer directly for everything else. Added ritual #3 to both CLAUDE.md files. Compared private vs public CLAUDE.md — substantively in sync, minor gaps fixed (duplicate code block removed, "Don't duplicate Espa" added to public). Split Failures & Lessons into dedicated failures-and-lessons.md in both repos (F-001 through F-014, 201 lines each). Brief cleaned of F-entries, pointer added. Session date history corrected and locked: S6=Jun1, S7=Jun2, S8=Jun3, S9=Jun4, S10=Jun5. F-014 logged (session date thrash). Brief is now fetchable end-to-end for architecture/decisions but build log still causes truncation — decision on how to fix deferred to next session.
+
+**Key decisions:**
+
+- Rituals formalized in project instructions AND CLAUDE.md — both environments enforce them
+- Failures & Lessons split into own file — brief is cleaner, failures are searchable separately
+- Brief truncation fix deferred — options are split build log or add current-state.md
+
+**What I learned:**
+
+- Even after Claude Code reports success, verify independently — the confirmation was accepted without checking. Only verified when pushed back.
+- The fetch truncation problem is structural — the brief will keep growing and will always truncate unless actively managed
+
+**Completed:**
+
+- Project instructions updated with 4 rituals
+- CLAUDE.md ritual #3 added to both repos
+- failures-and-lessons.md created in both repos, F-001–F-014
+- Brief cleaned of F-entries
+- Session history locked and corrected
+
+**Open for next session:**
+
+- Brief truncation fix — split build log or add current-state.md
+- June 15 billing change (10 days out)
+- Always-on scheduling decision (post-June 15)
+- Evals, Watch/Listen Later, meeting processing confirmation, Granola upgrade
+
 ---
 
 ## Failures & Lessons
