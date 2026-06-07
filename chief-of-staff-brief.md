@@ -793,6 +793,24 @@ Updated project instructions with 4 formalized rituals: WDAI cross-check before 
 - Always-on scheduling decision (post-June 15)
 - Evals, Watch/Listen Later, meeting processing confirmation, Granola upgrade
 
+### Session 11 — Context management + WDAI pitfalls doc (June 7, 2026)
+
+**What happened:**
+
+Planning session in Claude.ai. Debunked the Reddit "200-line markdown causes instructions to be ignored" claim — not a real Anthropic constraint. Established that token overhead is not a meaningful concern given Opus 4.8's 1M context window. Identified that WDAI cross-check findings were not being reliably surfaced in build decisions despite cross-checks occurring. Built a distilled WDAI Pitfalls & Flags doc (104 lines) extracted strictly from WDAI Sessions 1-3 transcripts — replaces the three raw transcript files previously stored in the Claude.ai project. Brief updated in repo to reference the new doc and retire the Google Drive brief as the canonical source.
+
+**Key decisions:**
+
+- Raw WDAI transcripts removed from Claude.ai project, replaced with distilled pitfalls doc
+- Google Drive brief retired — repo `chief-of-staff-brief.md` is now the canonical source of truth
+- GitHub repo as file system flagged as an open architecture question worth revisiting (more AI-native than Google Sheet + Drive)
+- WDAI Pitfalls & Flags doc to be updated after each of Sessions 4, 5, 6 by appending new findings
+
+**What I learned:**
+
+- The real problem wasn't that cross-checks weren't happening — it was that cross-check findings had no permanent home and weren't being reliably referenced in decisions
+- A distilled doc with strict source discipline (WDAI sessions only, not build session findings) is more trustworthy as a cross-check tool than a summary that mixes sources
+
 ---
 
 ## Failures & Lessons
