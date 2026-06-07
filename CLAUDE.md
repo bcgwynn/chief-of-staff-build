@@ -115,6 +115,7 @@ curl -s -X POST https://slack.com/api/chat.postMessage \
   2. Read `#brain-dump` (Channel ID: `YOUR_BRAIN_DUMP_CHANNEL_ID`) for non-meeting captures
   3. Do NOT use for email or calendar management
 - **Google Drive** (MCP) — project brief lives here. Doc ID: `YOUR_GOOGLE_DRIVE_DOC_ID`
+- **GitHub — two repos, always push together.** Every commit to shared files (brief, CLAUDE.md, scripts, failures-and-lessons.md) must be mirrored to both `chief-of-staff` (private) and `chief-of-staff-build` (public) in the same session. Public versions are scrubbed — replace personal IDs/tokens/channel IDs with `YOUR_*` placeholders and omit private-only sections (Rental Property, Google Resource IDs, WDAI Build Context, GitHub Repository Plan). Commit messages should be identical or adjusted only for scrubbing. Do not let the repos drift.
 
 ### You do NOT touch:
 - Email
