@@ -450,7 +450,7 @@ Updated project instructions with 4 formalized rituals: WDAI cross-check before 
 - Always-on scheduling decision (post-June 15)
 - Evals, Watch/Listen Later, meeting processing confirmation, Granola upgrade
 
-### Session 11 — Context management + WDAI pitfalls doc (June 7, 2026)
+### Session 11 — Context management + WDAI pitfalls doc (June 6-7, 2026)
 
 **What happened:**
 
