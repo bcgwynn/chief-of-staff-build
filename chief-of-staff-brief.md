@@ -1,15 +1,5 @@
 # Agentic Chief of Staff — Project Brief
 
-## Outcomes (next few months)
-
-1. **Build a public presence on LinkedIn** — post 2x/week. Topics: AI builds, work-life integration, product teardowns, lessons/insights. Inspiration sourced from Granola meeting notes and Slack brain dump channel.
-
-## Active Workstreams
-
-- **WDAI build:** the agentic chief of staff — this is the primary build project AND the "build in public" subject
-- **LinkedIn content:** chief of staff surfaces raw ideas from Granola + brain dump channel weekly; I shape and publish. **Commitment: 1 post per WDAI session (6 minimum) documenting the build journey — decisions, tradeoffs, failures.**
-
-
 ## Core Problem the Chief of Staff Solves
 
 Scattered notes (Apple Notes, Granola, Google Docs), no reliable system for resurfacing action items or follow-ups. Things get captured but not completed. LinkedIn content ideas are buried in the same scattered notes.
