@@ -1,6 +1,6 @@
 # Chief of Staff — Build Log
 
-An agentic chief of staff built with Claude Code, Google Sheets, Slack, and Granola. Built across 6 sessions as part of the Women Defining AI cohort.
+An agentic chief of staff built with Claude Code, Google Sheets, Slack, and Granola.
 
 ## Why I built this
 
