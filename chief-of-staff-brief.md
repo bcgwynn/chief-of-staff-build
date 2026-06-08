@@ -316,10 +316,6 @@ Ev Chapman's system uses four components: folder structure, CLAUDE.md (the brain
 
 ---
 
-## Build Log
-
-See chief-of-staff-build-log.md for all session entries (Session 0 onward).
-
 ## Failures & Lessons
 
 See failures-and-lessons.md for all failure entries.
