@@ -162,7 +162,7 @@ When asked to process meetings (or on a trigger):
 
 ### Daily Nudge Format
 
-Use this exact structure every time. Use Slack mrkdwn — NO markdown pipe tables. Canonical reference: May 29, 2026 nudge in #cos-updates.
+Use this exact structure every time. Use Slack mrkdwn — NO markdown pipe tables.
 
 ```
 *Daily Nudge — [Weekday, Month Day]*
@@ -170,6 +170,8 @@ Use this exact structure every time. Use Slack mrkdwn — NO markdown pipe table
 [URGENT block — include ONLY if one item is clearly most time-sensitive: deadline today or this week, or it blocks everything else. Omit entirely if nothing qualifies.]
 🚨 *URGENT — [Goal Name]*
 *[ID]* — [one sentence: what needs to happen and why today/this week. Specific and direct.]
+
+*Analysis:* [2-3 sentences synthesizing across all goals — NOT a recap of the list. Name the single highest-leverage unblocked action to focus on today. Call out what's at risk of slipping and why. If a dependency chain is blocking multiple items, name it explicitly. This is the orchestration layer.]
 
 ---
 
@@ -190,13 +192,9 @@ Use this exact structure every time. Use Slack mrkdwn — NO markdown pipe table
 • [CI-ID] — [idea angle] [← note if strong candidate for next post]
 [Omit this section entirely if no content ideas exist.]
 
-⚠️ [One line per anomaly: items past due date, items Open/In Progress >14 days with no status change, Blocked items where the blocker is also unresolved, data discrepancies between Sheet and brief. Omit this block entirely if nothing to flag.]
+⚠️ [One line per anomaly NOT already covered in URGENT or Analysis above — e.g. items past due date, data discrepancies between Sheet and brief. NEVER restate what's in URGENT or Analysis. Omit this block entirely if nothing genuinely new to flag.]
 
 _#brain-dump [fully processed. No new items since last run. | [N] new items added today: [brief list].]_
-
----
-
-*Analysis:* [2-3 sentences synthesizing across all goals — NOT a recap of the list. Name the single highest-leverage unblocked action to focus on today. Call out what's at risk of slipping and why. If a dependency chain is blocking multiple items, name it explicitly. This is the orchestration layer.]
 ```
 
 Priority dots: 🔴 High · 🟡 Medium · 🟢 Low — place at end of each bullet, after all inline context.
