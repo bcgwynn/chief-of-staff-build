@@ -67,28 +67,27 @@
 
 ### Session 2 — Infrastructure setup + first pipeline test (May 26, 2026)
 
-**What happened:** Reviewed CLAUDE.md edits Brittney made between sessions. Set up all MCP servers in Claude Code (Slack, Granola, Google Drive, Google Calendar). Created Slack app "Chief of Staff" for BG's Playground workspace. Created #brain-dump and #cos-updates channels. Connected claude.ai Slack to BG's Playground (required incognito window workaround). Ran first successful end-to-end pipeline test: Granola → extracted action items → posted summary to Slack. Discovered Google Drive MCP can't write to existing sheets — identified Google Apps Script as the fix.
+**What happened:** Reviewed CLAUDE.md edits Brittney made between sessions. Set up all MCP servers in Claude Code (Slack, Granola, Google Drive, Google Calendar). Created Slack app "Chief of Staff" for the personal Slack workspace. Created #brain-dump and #cos-updates channels. Connected claude.ai Slack to personal Slack workspace (required incognito window workaround). Ran first successful end-to-end pipeline test: Granola → extracted action items → posted summary to Slack. Discovered Google Drive MCP can't write to existing sheets — identified Google Apps Script as the fix.
 
 **Brittney's CLAUDE.md edits (between sessions):**
 - Added framing: "You are helping her scale herself. Your job is to help obsolete her self from recurring tasks."
-- DDC description refined: "Does project management/execution consulting for DDC"
 - Insulation no longer blocks tenant (only washer + microwave do)
 - Tenant has a July timeline — "Secure tenant for unit 1 in July ← blocked by 1-2"
 
 **Key decisions:**
-- Slack connected to BG's Playground (personal workspace), not WDAI
+- Slack connected to the personal Slack workspace, not WDAI
 - Google Apps Script webhook approach to solve Sheet write limitation
 - Slack channel IDs hardcoded in CLAUDE.md: #brain-dump (YOUR_BRAIN_DUMP_CHANNEL_ID), #cos-updates (YOUR_COS_UPDATES_CHANNEL_ID)
 
 **Infrastructure completed:**
 - Slack app "Chief of Staff" created with bot token + scopes (channels:read, channels:history, chat:write, groups:read, groups:history)
 - MCP servers added to Claude Code: slack (local stdio), granola (HTTP), google-drive (HTTP), google-calendar (HTTP)
-- claude.ai Slack connector switched to BG's Playground
+- claude.ai Slack connector switched to personal Slack workspace
 - #brain-dump and #cos-updates channels created and bot invited
 - CLAUDE.md updated with channel IDs and rental property corrections
 
 **Pipeline test results:**
-- ✅ Granola → read meeting notes (Brittney/Julian catch-up, May 18)
+- ✅ Granola → read meeting notes (Brittney/J catch-up, May 18)
 - ✅ Claude Code extracted action items following the schema (AI-008, AI-009)
 - ✅ Summary posted to Slack #cos-updates with action items, themes, and notes
 - ❌ Google Sheet write FAILED — Google Drive MCP supports read and create but not editing existing sheets
@@ -103,7 +102,7 @@
 
 **Tradeoffs made:**
 - Chose Google Apps Script webhook over finding a Sheets-specific MCP server — faster to implement, no new dependencies
-- Connected claude.ai Slack to BG's Playground instead of fixing local stdio MCP server — pragmatic, uses working connection path
+- Connected claude.ai Slack to personal Slack workspace instead of fixing local stdio MCP server — pragmatic, uses working connection path
 
 **What I learned:**
 - MCP server setup has sharp edges — silent failures, missing env vars, no workspace visibility in UI. These are exactly the PM pain points worth writing about
@@ -285,7 +284,7 @@ Both files live in the same Apps Script project linked to the CoS Action Items G
 
 ### Pending LinkedIn Post — Wrong Slack Workspace Incident
 
-**What happened (May 26, 2026):** While testing the Slack pipeline, the Chief of Staff bot posted "Hello from Chief of Staff!" to the WDAI community's `#general` channel (1,800 members) instead of the personal BG's Playground workspace. Root cause: claude.ai Slack connector was authenticated to the WDAI workspace, not the personal workspace. Had to disconnect, reconnect via incognito window to force workspace picker to BG's Playground.
+**What happened (May 26, 2026):** While testing the Slack pipeline, the Chief of Staff bot posted "Hello from Chief of Staff!" to the WDAI community's `#general` channel (1,800 members) instead of the personal Slack workspace. Root cause: claude.ai Slack connector was authenticated to the WDAI workspace, not the personal workspace. Had to disconnect, reconnect via incognito window to force workspace picker to personal Slack workspace.
 
 **Screenshot:** Available in this conversation (May 26 session) and potentially still visible in WDAI Slack `#general` around 11:28am May 26.
 
@@ -301,7 +300,7 @@ Two standing rituals formalized and baked into CLAUDE.md as hard gates: WDAI ses
 
 Failures & Lessons section restructured as a dedicated standalone section in the brief (F-001 through F-007 with full detail — what happened, root cause, fix, lesson, content potential). Previously failures were buried in build logs and getting condensed.
 
-Public repo (`bcgwynn/chief-of-staff-build`) planned and set up — scrubbed brief, scrubbed scripts, README structure defined. Public framing confirmed: "I built this to solve a real problem" — no job search copy, no PM positioning language.
+Public repo (`bcgwynn/chief-of-staff-build`) planned and set up — scrubbed brief, scrubbed scripts, README structure defined. Public framing confirmed: "I built this to solve a real problem" — focused on the build story, not personal career framing.
 
 LinkedIn post #2 published — wrong workspace incident (F-001).
 
@@ -312,7 +311,7 @@ F-006 and F-007 added to Failures & Lessons section (incomplete close-out instru
 - Standing rituals must be hard gates in CLAUDE.md, not reminders in the brief
 - Both claude.ai chat and Claude Code should check full WDAI transcripts, not summaries
 - Failures get their own dedicated section, written in full at the time they happen — never condensed
-- Public repo framing: build story with decisions and failures, not a portfolio piece signaling PM skills
+- Public repo framing: build story with decisions and failures, not personal career positioning
 - README structure: Problem, What I Built, Architecture Decisions, Failures & Lessons, What's Next, How to Use This
 
 **What I learned:**

@@ -2,16 +2,12 @@
 
 ## Outcomes (next few months)
 
-1. **Land a PM role** — actively applying/interviewing for consumer product roles. Highest priority. Strong existing PM track record; need to demonstrate current sharpness and AI fluency.
-2. **Build a public presence on LinkedIn** — post 2x/week. Topics: AI builds, work-life integration, product teardowns, lessons/insights. Inspiration sourced from Granola meeting notes and Slack brain dump channel.
-3. **Systematize DDC consulting** — currently 2-4 hrs/month. Needs a lightweight repeatable process. Parked until the chief of staff can handle it as a workflow.
+1. **Build a public presence on LinkedIn** — post 2x/week. Topics: AI builds, work-life integration, product teardowns, lessons/insights. Inspiration sourced from Granola meeting notes and Slack brain dump channel.
 
 ## Active Workstreams
 
-- **PM job search:** applications, networking, interview prep, follow-ups (tracked in separate spreadsheet, not in CoS v1)
 - **WDAI build:** the agentic chief of staff — this is the primary build project AND the "build in public" subject
 - **LinkedIn content:** chief of staff surfaces raw ideas from Granola + brain dump channel weekly; I shape and publish. **Commitment: 1 post per WDAI session (6 minimum) documenting the build journey — decisions, tradeoffs, failures.**
-- **DDC consulting:** occasional client work, systematization deferred
 
 
 ## Core Problem the Chief of Staff Solves
@@ -28,7 +24,6 @@ Scattered notes (Apple Notes, Granola, Google Docs), no reliable system for resu
 | Slack | Three roles: (1) delivery channel for CoS nudges + meeting summaries, (2) brain dump channel for non-meeting captures (temporary — processed daily), (3) daily communication |
 | Google Sheets | Persistent action item store with completion statuses. Also permanent archive for brain dump items. Tagged to goals |
 | Google Docs/Drive | Documents, shared files, and this project brief |
-| Spreadsheet (separate) | PM job application tracking — not integrated in v1 |
 
 ## Time Budget
 
@@ -48,7 +43,6 @@ Scattered notes (Apple Notes, Granola, Google Docs), no reliable system for resu
 - **Architecture direction:** Claude Code or hybrid — pure Projects can't push
 - **No separate personal OS** — the chief of staff IS the personal OS
 - **No content calendar yet** — weekly scan-and-pick ritual first
-- **DDC systematization parked** — becomes one of the chief of staff's first real workflows
 - **Completion tracking:** Yes — system tracks done vs. not done
 - **Persistent store:** Google Sheet for action items with statuses, tagged to goals
 - **Calendar integration:** Write-only — CoS creates calendar events when action items have deadlines/follow-up dates. Does not manage schedule (that's Espa)
@@ -210,7 +204,6 @@ This must happen BEFORE the next build session, not after.
 - True orchestration (system recommends what to do, not just lists)
 - Always-on cloud trigger (GitHub Actions, Railway, VPS)
 - Real-time Slack command processing
-- DDC systematization workflow
 - Image upload processing
 - Multi-agent structures
 - **Content post agent** — a dedicated agent that takes a content idea from the Content Ideas tab, drafts a post in Brittney's voice, and surfaces it for review/edit before publishing
@@ -319,7 +312,6 @@ Checked our architecture against pitfalls and lessons from WDAI Session 1 partic
 | Following up on things | ✅ Pushed to you | Daily Slack nudge + Calendar events |
 | Finding LinkedIn content ideas | ✅ Surfaced | Weekly Slack push from Granola + brain dump |
 | Writing LinkedIn posts | ❌ Still manual | By design — I shape the posts |
-| Checking/updating PM job spreadsheet | ❌ Deferred to v2 | Separate system for now |
 | Coordinating rental property tasks | ⚠️ Partial | Action items in sheet, no dependency logic yet |
 | Capturing non-meeting thoughts | ✅ New channel | Slack #brain-dump → processed daily to Sheet |
 | Weekly planning | ⚠️ Partial | Weekly progress nudge helps, but I still decide priorities |
@@ -330,14 +322,9 @@ Checked our architecture against pitfalls and lessons from WDAI Session 1 partic
 
 ## Strategic Framing — Why This Build Matters
 
-### Triple duty
-
-The chief of staff project simultaneously: solves a real workflow problem, positions for consumer/AI PM roles, and fuels LinkedIn content. No need to build something separate.
-
-
 ### Reference: Ev Chapman's Claude Code Chief of Staff (April 2026)
 
-Ev Chapman's system uses four components: folder structure, CLAUDE.md (the brain), markdown memory files (persist via git), and skills + MCP connections. Key insight: the whole system is "just a folder of files." Our architecture diverges by using Google Sheet instead of markdown for action items (accessibility tradeoff) and Slack as the push channel (Ev's system is more pull-based). Being able to articulate these tradeoffs = PM interview gold.
+Ev Chapman's system uses four components: folder structure, CLAUDE.md (the brain), markdown memory files (persist via git), and skills + MCP connections. Key insight: the whole system is "just a folder of files." Our architecture diverges by using Google Sheet instead of markdown for action items (accessibility tradeoff) and Slack as the push channel (Ev's system is more pull-based).
 
 ---
 

@@ -26,7 +26,7 @@ set +a
 ---
 
 TYPE 1 — SHEET UPDATES
-Commands like: 'done AI-007', 'mark AI-001 as in progress', 'snooze AI-003 until next week', 'CI-004 Posted', 'add action item: follow up with recruiter at X company by Friday'.
+Commands like: 'done AI-007', 'mark AI-001 as in progress', 'snooze AI-003 until next week', 'CI-004 Posted', 'add action item: follow up on the contractor quote by Friday'.
 
 For each command:
 1. Interpret what needs to change (status update, snooze, new item, reprioritization, etc.)

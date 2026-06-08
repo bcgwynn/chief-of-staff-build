@@ -4,15 +4,15 @@
 
 ### F-001 — Chief of Staff bot posted in WDAI community Slack (May 26, 2026)
 
-**What happened:** While testing the Slack pipeline, Claude Code sent a test message ("Hello from Chief of Staff!") to the WDAI community Slack `#general` channel (1,800 members) instead of BG's Playground personal workspace.
+**What happened:** While testing the Slack pipeline, Claude Code sent a test message ("Hello from Chief of Staff!") to the WDAI community Slack `#general` channel (1,800 members) instead of the personal Slack workspace.
 
 **Root cause:** Two Slack connections were active simultaneously:
 1. The claude.ai Slack connector (HTTP MCP) — authenticated to the WDAI workspace
-2. The local bot token MCP server (stdio) — supposed to connect to BG's Playground but was showing "Failed to connect" due to a missing SLACK_TEAM_ID environment variable
+2. The local bot token MCP server (stdio) — supposed to connect to personal Slack workspace but was showing "Failed to connect" due to a missing SLACK_TEAM_ID environment variable
 
 Claude Code used the only working Slack connection it had — the WDAI connector. Silent fallback to the wrong workspace.
 
-**Fix:** Diagnosed via Claude Code searching which workspace was being used. Disconnected Slack connector in claude.ai settings. Reconnected via incognito browser window (only BG's Playground active). Fixed local bot token server by adding SLACK_TEAM_ID. Verified with test message to correct channel.
+**Fix:** Diagnosed via Claude Code searching which workspace was being used. Disconnected Slack connector in claude.ai settings. Reconnected via incognito browser window (only personal Slack workspace active). Fixed local bot token server by adding SLACK_TEAM_ID. Verified with test message to correct channel.
 
 **Lesson:** When multiple connections of the same type exist, Claude Code uses the working one — not necessarily the right one. Always verify which connection is active before any automated pipeline runs. Now: ask the system to state its assumptions before building anything with external side effects.
 
@@ -150,7 +150,7 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 
 ### F-011 — Weak citations lowered trust in analysis (June 4, 2026)
 
-**What happened:** When researching Claude Code billing and ToS, Claude.ai cited sources primarily about landing AI/PM jobs rather than building/infrastructure. The citations weren't relevant, lowering confidence in the conclusions.
+**What happened:** When researching Claude Code billing and ToS, Claude.ai cited sources primarily about general AI career trends rather than building/infrastructure. The citations weren't relevant, lowering confidence in the conclusions.
 
 **Root cause:** Claude.ai pulled from whatever search returned without vetting source relevance. For a consequential decision it should have gone to primary sources (Anthropic docs) first.
 

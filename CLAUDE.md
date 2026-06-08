@@ -45,16 +45,15 @@ curl -s -X POST https://slack.com/api/chat.postMessage \
 
 ## Who I Am (adapt this to yourself)
 
-- Product manager building an agentic chief of staff
-- Goals: job search, building in public on LinkedIn, side consulting, rental property management
-- Building this system as a portfolio piece and practical daily tool
+- Building an agentic chief of staff
+- Goals: building in public on LinkedIn, rental property management
+- Building this system as a practical daily tool
 
 ## Current Goals
 
 ### Outcomes (multi-month)
-1. **Land a PM role** — actively applying/interviewing. Highest priority.
-2. **Build a public presence on LinkedIn** — 2x/week.
-3. **Systematize recurring work** — parked until CoS can handle it as a workflow.
+1. **Build a public presence on LinkedIn** — 2x/week.
+2. **Systematize recurring work** — parked until CoS can handle it as a workflow.
 
 ## Tools & Integrations
 
@@ -120,7 +119,6 @@ curl -s -X POST https://slack.com/api/chat.postMessage \
 ### You do NOT touch:
 - Email
 - Calendar reads/schedule management
-- PM job tracking spreadsheet (separate system, not integrated yet)
 
 ## What You Do
 
@@ -215,7 +213,7 @@ Priority dots: 🔴 High · 🟡 Medium · 🟢 Low — place at end of each bul
 | Action Item | Free text |
 | Source | "Meeting: [meeting name]" / "Brain dump" / "Manual" |
 | Source Date | YYYY-MM-DD |
-| Goal | PM Job / LinkedIn / DDC / Rental / WDAI Build / Other |
+| Goal | LinkedIn / Rental / WDAI Build / Other |
 | Priority | High / Medium / Low |
 | Status | Open / In Progress / Done / Blocked |
 | Blocked By | ID reference or description, or blank |
