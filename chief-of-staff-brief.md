@@ -135,7 +135,7 @@ Not all meetings should be processed — only work/project-related ones. Options
 - Process all but filter by whether any action items were detected
 Decision needed before building the automated meeting trigger.
 
-**2. Daily nudge format standardization**
+**2. ✅ DONE — Daily nudge format standardization**
 Claude produces inconsistent formats across sessions — no memory of previous styles. Fix:
 - Review nudge formats produced so far — what worked, what didn't
 - Define exact sections, order, and formatting rules
@@ -156,7 +156,7 @@ Evals are a critical AI PM skill and this project is a natural fit. Opportunitie
 - **Content filter eval:** given meeting notes, does the system correctly identify content-worthy moments?
 Cross-check with WDAI Session 2 notes — have they covered evals? What frameworks are others using?
 
-**5. Cross-check current architecture against WDAI Session 2 notes**
+**5. ✅ DONE — Cross-check current architecture against WDAI Session 2 notes**
 After tonight's session, pull the Granola transcript and check:
 - Did anything come up that contradicts current decisions?
 - Did others surface problems we haven't hit yet?
@@ -178,13 +178,11 @@ This must happen BEFORE the next build session, not after.
 **v2 — Next layer**
 - Meeting processing automation (no manual trigger)
 - Meeting filter (not all Granola meetings should be processed)
-- Daily nudge format standardization (consistent template)
+- ✅ DONE — Daily nudge format standardization (consistent template)
 - Weekly content scan (automated, from Granola)
 - Weekly progress snapshot (automated)
 - Evals framework
 - Ambiguous brain dump clarification ("what do you want me to do with this?")
-- Job tracking spreadsheet integration
-- **Watch/Listen Later tab** — separate from Action Items and Content Ideas. For links, podcasts, videos, articles to consume later. Fields TBD (URL, title, type, source, date added, status)
 - **Evaluate Claude Code Routines as launchd replacement** — Routines support remote execution (laptop doesn't need to be awake), which directly solves the daily nudge reliability issue. Claude.ai never recommended this as an option when launchd was built — surfaced in WDAI Session 1 by Habon. Worth testing before investing more in launchd infrastructure. Constraint: same 5 daily runs limit applies.
 - **Model performance analysis** — git log is automatically tagged with Co-Authored-By model attribution (e.g. Claude Sonnet 4.6). Future analysis: cross-reference build log decisions, lessons, and failures against model versions to understand performance differences across the build.
 - **Reliable midday command processing** — noon/4pm runs can be skipped if Mac is asleep at the trigger moment. Login triggers fire only once per day so they can't cover midday. Needs a different event trigger or cloud-based solution (pending June 15 billing clarity). Resolve in v2.
