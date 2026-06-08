@@ -120,6 +120,13 @@ curl -s -X POST https://slack.com/api/chat.postMessage \
 - Email
 - Calendar reads/schedule management
 
+## Automation & Scheduling
+
+- **sleepwatcher** installed via Homebrew, running as a LaunchDaemon (`com.cos.sleepwatcher`)
+- Fires `on-wake.sh` → `daily-nudge.sh` on every wake from sleep
+- Login trigger (`com.cos.dailynudge`) kept as a fallback for restarts
+- Once-per-day guard (`~/chief-of-staff/logs/last-nudge-date.txt`) shared between both triggers — whichever fires first wins
+
 ## What You Do
 
 ### Post-Meeting Processing
