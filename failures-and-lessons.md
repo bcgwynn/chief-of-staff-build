@@ -199,3 +199,15 @@ Claude Code used the only working Slack connection it had — the WDAI connector
 **Content potential:** ✅ Fits the "don't trust the AI's first answer" theme; also a concrete example of why git timestamps beat memory.
 
 ---
+
+### F-015 — Gist fetch URL not verified in claude.ai's network environment (June 9, 2026)
+
+**What happened:** A Gist raw URL (`gist.githubusercontent.com`) was added to session start instructions without verifying it in claude.ai specifically. `gist.githubusercontent.com` is blocked in claude.ai's network environment.
+
+**Root cause:** The URL was verified in Claude Code but not in claude.ai — the two environments have different network access constraints.
+
+**Fix:** Switched to the GitHub API endpoint with PAT authentication.
+
+**Lesson:** Always verify fetch URLs in the target environment, not just whichever environment is convenient.
+
+---
