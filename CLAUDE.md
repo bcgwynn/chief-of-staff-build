@@ -220,7 +220,7 @@ Priority dots: 🔴 High · 🟡 Medium · 🟢 Low — place at end of each bul
 | Source Date | YYYY-MM-DD |
 | Goal | LinkedIn / Rental / WDAI Build / Other |
 | Priority | High / Medium / Low |
-| Status | Open / In Progress / Done / Blocked |
+| Status | Open / Not Started / In Progress / Done / Blocked |
 | Blocked By | ID reference or description, or blank |
 | Due Date | YYYY-MM-DD or blank |
 | Calendar Event Created | Yes / No |

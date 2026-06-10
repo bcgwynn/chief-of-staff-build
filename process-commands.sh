@@ -21,7 +21,7 @@ source .env
 set +a
 
 /Users/YOUR_USERNAME/.local/bin/claude -p --dangerously-skip-permissions \
-  "Check #cos-updates channel (YOUR_COS_UPDATES_CHANNEL_ID) for any recent messages from the user (not from the Chief of Staff bot) that look like commands. Handle two types:
+  "Check #cos-updates channel (YOUR_COS_UPDATES_CHANNEL_ID) for any recent messages from the user (not from the Chief of Staff bot) that look like commands. Handle three types:
 
 ---
 
@@ -65,6 +65,35 @@ For each meeting processing command:
 
 ---
 
-If no commands of either type are found, do nothing and exit silently.
+TYPE 3 — PROGRESS UPDATES
+Messages that mention an AI- item ID (e.g. 'AI-014') but aren't explicit TYPE 1 commands — natural-language updates on what's happening with that item. Examples: 'AI-014 called the contractor, scheduled for next Tuesday', 'AI-009 blocked by waiting on city permit approval', 'AI-021 haven't started yet'. If a message clearly matches a TYPE 1 command pattern, handle it under TYPE 1 instead.
+
+If the message mentions multiple AI- IDs, classify and update each one independently — do not apply one classification to the whole message. If the message describes each ID differently (e.g. 'AI-014 done, AI-015 still waiting on permit'), classify each ID from its own clause/context. If the same update applies to all IDs (e.g. 'AI-014 and AI-015 both blocked by the contractor's quote'), apply that classification to each, sending a separate payload per ID.
+
+For each ID, classify against these categories in order — first match wins — and update the Sheet via the webhook (action 'update', same two-step curl pattern as TYPE 1):
+
+1. DONE — message contains 'done', 'complete', or 'finished':
+   {\"action\":\"update\",\"id\":\"AI-xxx\",\"status\":\"Done\",\"completed_date\":\"YYYY-MM-DD\"} (today's date)
+
+2. BLOCKED — message contains 'blocked by', 'waiting on', or 'blocked until':
+   Extract the reason that follows the trigger phrase as blocked_by.
+   {\"action\":\"update\",\"id\":\"AI-xxx\",\"status\":\"Blocked\",\"blocked_by\":\"<extracted reason>\"}
+
+3. NOT STARTED — message contains 'not started', 'haven't started', or 'not begun':
+   {\"action\":\"update\",\"id\":\"AI-xxx\",\"status\":\"Not Started\",\"notes\":\"<message text>\"}
+
+4. ACTIVE MOVEMENT — message contains a progress verb: ordered, scheduled, called, sent, submitted, booked, signed, filed, paid, installed, completed, started, began, working on:
+   {\"action\":\"update\",\"id\":\"AI-xxx\",\"status\":\"In Progress\",\"notes\":\"<full message text>\"}
+
+5. NEUTRAL/UNRECOGNIZED — anything else mentioning an AI- ID:
+   {\"action\":\"update\",\"id\":\"AI-xxx\",\"notes\":\"<message text>\"} (omit the status field — leave status unchanged)
+
+Note: the live Apps Script auto-prepends a [Mon DD] date stamp and appends to existing Notes content with ' / ' as a separator. Send only the raw message text in 'notes' — do not add your own date stamp.
+
+After updating, post a brief confirmation to #cos-updates using mcp__slack__slack_post_message (NOT mcp__claude_ai_Slack) stating the ID and what changed.
+
+---
+
+If no commands of any type are found, do nothing and exit silently.
 
 Only process messages that do not already have a checkmark confirmation reply following them."
