@@ -9,7 +9,11 @@ if [ -f "$GUARD_FILE" ] && [ "$(cat "$GUARD_FILE")" = "$TODAY" ]; then
     echo "Nudge already ran today ($TODAY). Exiting."
     exit 0
 fi
-echo "$TODAY" > "$GUARD_FILE"
+
+# Load bot token so the local Slack MCP server posts as Chief of Staff APP
+set -a
+source .env
+set +a
 
 # Run command processor first so brain-dump is processed before the Sheet is read.
 # Runs synchronously — nudge waits for it to finish before proceeding.
@@ -19,11 +23,6 @@ CMD_EXIT=$?
 if [ $CMD_EXIT -ne 0 ]; then
     echo "Warning: command processor exited with code $CMD_EXIT. Proceeding with nudge." >&2
 fi
-
-# Load bot token so the local Slack MCP server posts as Chief of Staff APP
-set -a
-source .env
-set +a
 
 /Users/YOUR_USERNAME/.local/bin/claude -p --dangerously-skip-permissions "Run the daily nudge:
 
@@ -39,3 +38,11 @@ set +a
    - Include the Analysis section at the bottom — synthesize across all goals, name the highest-leverage action, call out what's slipping
 
 IMPORTANT: post using mcp__slack__slack_post_message (local Slack MCP with bot token) — do NOT use mcp__claude_ai_Slack tools."
+NUDGE_EXIT=$?
+
+if [ $NUDGE_EXIT -ne 0 ]; then
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - daily-nudge.sh: claude call failed with exit code $NUDGE_EXIT. Guard file not stamped, next wake event will retry." >> "$HOME/chief-of-staff/logs/nudge-error.log"
+    exit $NUDGE_EXIT
+fi
+
+echo "$TODAY" > "$GUARD_FILE"
