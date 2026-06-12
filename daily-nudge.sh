@@ -34,7 +34,8 @@ fi
    - Use Slack mrkdwn only — NO markdown pipe tables (| col | col | rows). Tables render as raw text in Slack.
    - Items are bullets with inline context woven into sentences, not columns
    - Priority dots (🔴 🟡 🟢) go at the end of each bullet
-   - Bold blockers inline: *Blocked by AI-001 + AI-002.*
+   - Bold blockers inline: *Blocked by [ID].*
+   - Blockers: report only what is in the Sheet's Blocked By field. Do not infer blockers or add context from CLAUDE.md or anywhere else.
    - Include the Analysis section at the bottom — synthesize across all goals, name the highest-leverage action, call out what's slipping
 
 IMPORTANT: post using mcp__slack__slack_post_message (local Slack MCP with bot token) — do NOT use mcp__claude_ai_Slack tools."
